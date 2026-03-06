@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sisi Luqa — Marketing & AI Strategy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #02127A;
+      --navy-light: #0a1f6e;
+      --blue: #02127A;
+      --pink: #D14D95;
+      --pink-soft: #fce8f4;
+      --burgundy: #7c2d3e;
+      --burgundy-soft: #f9eef0;
+      --gold: #c9972b;
+      --gold-soft: #fdf6e8;
+      --white: #ffffff;
+      --off-white: #f5f0fc;
+      --light: #ede8f7;
+      --text: #1a1a2e;
+      --text-mid: #3a3a6a;
+      --text-light: #7070a8;
+      --border: #dcd5f0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: linear-gradient(160deg, #f5f0fc 0%, #eef0fb 50%, #fce8f4 100%);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      overflow-x: hidden;
+    }
+
+    /* ── PASSWORD SCREEN ── */
+    #password-screen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #02127A 0%, #0a1a5e 40%, #1a0a3e 100%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .pw-box {
+      text-align: center;
+      padding: 3rem;
+      max-width: 420px;
+      width: 90%;
+    }
+
+    .pw-monogram {
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, #02127A, #D14D95);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .pw-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .pw-subtitle {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .pw-input {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      text-align: center;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .pw-input::placeholder { color: rgba(255,255,255,0.25); letter-spacing: 0; }
+    .pw-input:focus { border-color: var(--pink); }
+
+    .pw-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #02127A, #D14D95);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .pw-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .pw-error {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: #ff8095;
+      display: none;
+    }
+
+    /* ── MAIN CONTENT ── */
+    #main-content { display: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 4rem;
+      height: 68px;
+      background: rgba(248, 247, 244, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-logo-badge {
+      width: 32px; height: 32px;
+      background: linear-gradient(160deg, #02127A 0%, #0d0a3e 60%, #2a0a2e 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: white;
+      font-weight: 700;
+    }
+
+    .nav-links { display: flex; gap: 0.25rem; list-style: none; }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--navy); background: var(--light); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #02127A, #D14D95);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Decorative circles */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(1,18,122,0.3) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(209,77,149,0.15) 0%, transparent 70%);
+      bottom: -50px; left: 200px;
+      pointer-events: none;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 9rem 4rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(209,77,149,0.12);
+      border: 1px solid rgba(209,77,149,0.25);
+      color: var(--pink);
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      width: fit-content;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-tag::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 700;
+      line-height: 1.08;
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--pink);
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+      max-width: 420px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #02127A, #D14D95);
+      color: white;
+      padding: 0.85rem 2rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(1,18,122,0.3);
+    }
+
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(1,18,122,0.4); }
+
+    .btn-outline {
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      padding: 0.85rem 2rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover { border-color: rgba(255,255,255,0.5); color: white; }
+
+    /* Hero right — card stack */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 9rem 4rem 5rem 2rem;
+      gap: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .hero-card:hover { background: rgba(255,255,255,0.09); transform: translateX(4px); }
+
+    .hero-card-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-card-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: white;
+      line-height: 1.1;
+    }
+
+    .hero-card-sub {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 0.25rem;
+    }
+
+    /* ── SHARED SECTION ── */
+    .section-wrap { max-width: 1100px; margin: 0 auto; padding: 6rem 4rem; }
+
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-pill {
+      background: linear-gradient(135deg, #02127A, #1a0a5e);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.85rem;
+      border-radius: 100px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 em { font-style: italic; color: var(--blue); }
+
+    .section-sub { font-size: 0.9rem; color: var(--text-light); margin-bottom: 3.5rem; font-weight: 300; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+
+    .about-grid { display: grid; grid-template-columns: 1fr 340px; gap: 4rem; align-items: start; }
+
+    .about-text p { font-size: 0.9rem; line-height: 1.85; color: var(--text-mid); margin-bottom: 1.25rem; }
+    .about-text p strong { color: var(--navy); font-weight: 600; }
+
+    .about-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-mid);
+    }
+
+    .highlight-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-blue { background: var(--blue); }
+    .dot-burgundy { background: var(--burgundy); }
+    .dot-gold { background: var(--gold); }
+    .dot-navy { background: var(--navy); }
+
+    .edu-stack { display: flex; flex-direction: column; gap: 1rem; }
+
+    .edu-card {
+      background: var(--off-white);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border-left: 4px solid var(--navy);
+      transition: transform 0.2s;
+    }
+
+    .edu-card:hover { transform: translateX(4px); }
+    .edu-card.pink { border-left-color: var(--pink); }
+
+    .edu-label {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-degree {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+
+    .edu-school { font-size: 0.75rem; color: var(--text-light); margin-bottom: 0.25rem; }
+    .edu-year { font-size: 0.72rem; font-weight: 600; color: var(--blue); }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--off-white); }
+
+    .exp-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .exp-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .exp-card:hover { box-shadow: 0 8px 32px rgba(15,31,61,0.08); transform: translateY(-2px); }
+
+    .exp-card-header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.75rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .exp-logo {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .logo-navy { background: var(--navy); }
+    .logo-pink { background: linear-gradient(135deg, #02127A, #D14D95); }
+    .logo-burgundy { background: var(--burgundy); }
+    .logo-gold { background: linear-gradient(135deg, var(--gold), #e8b84b); }
+
+    .exp-header-info { flex: 1; }
+
+    .exp-role {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.2rem;
+    }
+
+    .exp-company-name { font-size: 0.8rem; color: var(--text-light); font-weight: 400; }
+
+    .exp-badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .badge-current { background: var(--pink-soft); color: var(--blue); }
+    .badge-past { background: var(--light); color: var(--text-light); }
+    .badge-freelance { background: var(--gold-soft); color: var(--gold); }
+    .badge-volunteer { background: var(--burgundy-soft); color: var(--burgundy); }
+
+    .exp-card-body { padding: 1.75rem 2rem; }
+
+    .exp-summary {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+      font-style: italic;
+      padding-left: 1rem;
+      border-left: 3px solid var(--border);
+    }
+
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .exp-bullets li {
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: var(--text-mid);
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .exp-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.55em;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--pink);
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--white); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .skill-card {
+      background: var(--off-white);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .skill-card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(15,31,61,0.07); }
+
+    .skill-card-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .icon-navy { background: var(--navy); }
+    .icon-pink { background: var(--pink-soft); }
+    .icon-burgundy { background: var(--burgundy-soft); }
+    .icon-gold { background: var(--gold-soft); }
+
+    .skill-card-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 0.85rem;
+    }
+
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+    .skill-tag {
+      font-size: 0.72rem;
+      padding: 0.3rem 0.75rem;
+      background: white;
+      color: var(--text-mid);
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      font-weight: 400;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .skill-tag:hover { background: linear-gradient(135deg, #02127A, #D14D95); color: white; border-color: transparent; }
+    .skill-tag.featured { background: linear-gradient(135deg, #fce8f4, #ede8f7); color: #02127A; border-color: transparent; font-weight: 600; }
+
+    /* ── VOLUNTEER ── */
+    #volunteer { background: var(--navy); }
+    #volunteer h2 { color: white; }
+    #volunteer h2 em { color: var(--pink); }
+    #volunteer .section-sub { color: rgba(255,255,255,0.4); }
+    #volunteer .section-pill { background: rgba(255,255,255,0.1); }
+
+    .vol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+    .vol-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: background 0.2s;
+    }
+
+    .vol-card:hover { background: rgba(255,255,255,0.08); }
+
+    .vol-icon {
+      font-size: 1.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .vol-role {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 0.3rem;
+    }
+
+    .vol-org { font-size: 0.75rem; color: var(--pink); font-weight: 500; margin-bottom: 0.25rem; }
+    .vol-date { font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-bottom: 1rem; }
+    .vol-desc { font-size: 0.8rem; line-height: 1.7; color: rgba(255,255,255,0.55); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--off-white); }
+
+    .contact-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-wrap h2 { margin-bottom: 0.75rem; }
+
+    .contact-wrap p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .contact-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(15,31,61,0.08); }
+
+    .contact-card-icon { font-size: 1.5rem; margin-bottom: 0.6rem; }
+
+    .contact-card-label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-card-val { font-size: 0.78rem; color: var(--navy); font-weight: 500; }
+
+    .contact-location {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 1.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span { font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: white !important;
+      font-style: italic;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+
+    .hero-left > * { animation: fadeUp 0.7s ease both; }
+    .hero-left > *:nth-child(1) { animation-delay: 0.05s; }
+    .hero-left > *:nth-child(2) { animation-delay: 0.15s; }
+    .hero-left > *:nth-child(3) { animation-delay: 0.25s; }
+    .hero-left > *:nth-child(4) { animation-delay: 0.35s; }
+    .hero-right { animation: fadeUp 0.7s ease 0.3s both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 7rem 2rem 2rem; }
+      .hero-right { padding: 0 2rem 4rem; grid-template-columns: 1fr 1fr; display: grid; gap: 0.75rem; }
+      .hero-card { padding: 1.25rem; }
+      .section-wrap { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .vol-grid { grid-template-columns: 1fr; }
+      .contact-cards { grid-template-columns: 1fr; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PASSWORD SCREEN -->
+  <div id="password-screen">
+    <div class="pw-box">
+      <div class="pw-monogram">SL</div>
+      <div class="pw-title">Sisi Luqa</div>
+      <div class="pw-subtitle">This portfolio is password protected</div>
+      <input type="password" class="pw-input" id="pw-input" placeholder="Enter password"/>
+      <button class="pw-btn" onclick="checkPassword()">Enter Portfolio →</button>
+      <div class="pw-error" id="pw-error">Incorrect password. Please try again.</div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div id="main-content">
+
+    <!-- NAV -->
+    <nav>
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-badge">SL</div>
+        Sisi Luqa
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-left">
+        <div class="hero-tag">Available for new opportunities</div>
+        <h1>Marketing<br><em>Technology</em><br>& AI Strategy</h1>
+        <p class="hero-desc">I build the systems, strategies, and AI tools that help marketing teams move faster and grow smarter. MBA Candidate at McMaster DeGroote.</p>
+        <div class="hero-actions">
+          <a href="#experience" class="btn-primary">View My Work</a>
+          <a href="#contact" class="btn-outline">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-card">
+          <div class="hero-card-label">Current Role</div>
+          <div class="hero-card-value">MarTech & AI Lead</div>
+          <div class="hero-card-sub">FCT · Oakville, ON</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-label">Website Pages Managed</div>
+          <div class="hero-card-value">200+</div>
+          <div class="hero-card-sub">Full rebrand & relaunch</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-label">Custom GPT Agents Built</div>
+          <div class="hero-card-value">4+</div>
+          <div class="hero-card-sub">Brand Voice, SEO, Analytics, Confluence</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-label">MarTech Platforms</div>
+          <div class="hero-card-value">10+</div>
+          <div class="hero-card-sub">Onboarded & integrated</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div id="about">
+      <div class="section-wrap">
+        <div class="section-eyebrow"><span class="section-pill">About</span></div>
+        <h2>Bridging Strategy<br>with <em>Execution</em></h2>
+        <p class="section-sub">The person who speaks both marketing and tech fluently.</p>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>I'm a <strong>Marketing Technology and Operations leader</strong> specializing in AI-enabled marketing systems, digital infrastructure, and data-driven operations. I thrive at the intersection of creative strategy and technical implementation — building the tools and workflows that make marketing teams genuinely effective.</p>
+            <p>At FCT, I lead everything from <strong>custom GPT agent development</strong> and HubSpot ecosystem architecture to full website rebrands and UTM governance frameworks. I've onboarded and integrated 10+ marketing platforms, and I serve as the team's primary AI strategist — translating emerging technology into real, practical workflows.</p>
+            <p>Beyond my day job, I lead digital operations for an international nonprofit educating girls in conflict zones, and consult for small businesses on digital presence and automation.</p>
+            <div class="about-highlights">
+              <div class="highlight-item"><div class="highlight-dot dot-blue"></div>AI strategy & custom GPT development</div>
+              <div class="highlight-item"><div class="highlight-dot dot-navy"></div>Marketing technology stack architecture</div>
+              <div class="highlight-item"><div class="highlight-dot dot-burgundy"></div>SEO, analytics & digital performance</div>
+              <div class="highlight-item"><div class="highlight-dot dot-gold"></div>HubSpot CMS, CRM & automation</div>
+            </div>
+          </div>
+          <div class="edu-stack">
+            <div class="edu-card">
+              <div class="edu-label">Graduate Degree</div>
+              <div class="edu-degree">MBA — Strategic Marketing & Business Analytics</div>
+              <div class="edu-school">McMaster University, DeGroote School of Business</div>
+              <div class="edu-year">2025 → 2027 (Expected)</div>
+            </div>
+            <div class="edu-card pink">
+              <div class="edu-label">Undergraduate Degree</div>
+              <div class="edu-degree">BCom — Law & Business / Marketing Management</div>
+              <div class="edu-school">Toronto Metropolitan University</div>
+              <div class="edu-year">2015 → 2019</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div id="experience">
+      <div class="section-wrap">
+        <div class="section-eyebrow"><span class="section-pill">Experience</span></div>
+        <h2>Where I've Made<br>an <em>Impact</em></h2>
+        <p class="section-sub">Enterprise, freelance, and nonprofit leadership.</p>
+
+        <div class="exp-grid">
+
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <div class="exp-logo logo-navy">F</div>
+              <div class="exp-header-info">
+                <div class="exp-role">Marketing Technology & Operations Manager</div>
+                <div class="exp-company-name">FCT · Oakville, ON · Sept 2023 – Present</div>
+              </div>
+              <span class="exp-badge badge-current">Current</span>
+            </div>
+            <div class="exp-card-body">
+              <div class="exp-summary">Lead marketing technology strategy, digital infrastructure, and AI enablement supporting enterprise marketing operations.</div>
+              <ul class="exp-bullets">
+                <li>Manage full marketing technology ecosystem — HubSpot CMS/CRM, analytics, automation, and web infrastructure</li>
+                <li>Oversee corporate website across 200+ webpages: performance, SEO visibility, content governance, and UX</li>
+                <li>Led full website rebrand and relaunch, coordinating cross-functional teams to modernize the digital experience</li>
+                <li>Serve as department AI lead — advising on generative AI adoption and integrating AI into marketing workflows</li>
+                <li>Designed and deployed custom GPT agents: Brand Voice, SEO, Analytics, and Confluence Knowledge GPTs</li>
+                <li>Led onboarding of new martech including Customer Data Platform (CDP) initiatives and cross-system integrations</li>
+                <li>Developed UTM governance framework to standardize campaign tracking and improve attribution</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <div class="exp-logo logo-navy">F</div>
+              <div class="exp-header-info">
+                <div class="exp-role">Marketing Coordinator</div>
+                <div class="exp-company-name">FCT · Oakville, ON · Apr 2022 – Sept 2023</div>
+              </div>
+              <span class="exp-badge badge-past">Past</span>
+            </div>
+            <div class="exp-card-body">
+              <ul class="exp-bullets">
+                <li>Designed operational workflows for team project management in Asana, improving coordination and visibility</li>
+                <li>Built Confluence knowledge repository to centralize documentation as a Centre of Excellence</li>
+                <li>Developed improved marketing budget tracking for stronger financial oversight and campaign planning</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <div class="exp-logo logo-gold">SL</div>
+              <div class="exp-header-info">
+                <div class="exp-role">Digital Marketing Consultant</div>
+                <div class="exp-company-name">Freelance · Oakville, ON · Apr 2022 – Present</div>
+              </div>
+              <span class="exp-badge badge-freelance">Freelance</span>
+            </div>
+            <div class="exp-card-body">
+              <ul class="exp-bullets">
+                <li>Designed and launched business websites (WordPress, Wix) for digital presence and customer acquisition</li>
+                <li>Built automated lead capture and email workflows improving prospect engagement</li>
+                <li>Developed full brand identity systems: social templates, visual guidelines, LinkedIn branding assets</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <div class="exp-logo logo-burgundy">G</div>
+              <div class="exp-header-info">
+                <div class="exp-role">Recruitment Marketing Specialist</div>
+                <div class="exp-company-name">Globe Life – Paz Organization · Jan 2021 – Apr 2022</div>
+              </div>
+              <span class="exp-badge badge-past">Past</span>
+            </div>
+            <div class="exp-card-body">
+              <ul class="exp-bullets">
+                <li>Led digital recruitment marketing to strengthen brand presence and grow candidate pipeline</li>
+                <li>Developed email nurture campaigns improving applicant-to-hire conversion rates</li>
+                <li>Managed website and digital content to align recruitment messaging with hiring strategy</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div id="skills">
+      <div class="section-wrap">
+        <div class="section-eyebrow"><span class="section-pill">Skills</span></div>
+        <h2>The Tools of<br>my <em>Trade</em></h2>
+        <p class="section-sub">Platforms and technologies I work with every day.</p>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-card-icon icon-pink">🤖</div>
+            <div class="skill-card-title">AI & Automation</div>
+            <div class="skill-tags">
+              <span class="skill-tag featured">Custom GPT Development</span>
+              <span class="skill-tag featured">AI Workflow Design</span>
+              <span class="skill-tag">ChatGPT Enterprise</span>
+              <span class="skill-tag">Copilot</span>
+              <span class="skill-tag">Zapier</span>
+              <span class="skill-tag">HubSpot Automation</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-icon icon-navy">⚙️</div>
+            <div class="skill-card-title">MarTech & CMS</div>
+            <div class="skill-tags">
+              <span class="skill-tag featured">HubSpot CMS</span>
+              <span class="skill-tag featured">HubSpot CRM</span>
+              <span class="skill-tag">WordPress</span>
+              <span class="skill-tag">Wix</span>
+              <span class="skill-tag">CDP</span>
+              <span class="skill-tag">Salesforce</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-icon icon-gold">📊</div>
+            <div class="skill-card-title">Analytics & SEO</div>
+            <div class="skill-tags">
+              <span class="skill-tag featured">Google Analytics</span>
+              <span class="skill-tag featured">SEMrush</span>
+              <span class="skill-tag">Search Console</span>
+              <span class="skill-tag">Yoast</span>
+              <span class="skill-tag">UTM Governance</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-icon icon-burgundy">📧</div>
+            <div class="skill-card-title">Email Marketing</div>
+            <div class="skill-tags">
+              <span class="skill-tag featured">HubSpot</span>
+              <span class="skill-tag">Active Campaign</span>
+              <span class="skill-tag">Constant Contact</span>
+              <span class="skill-tag">Mailchimp</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-icon icon-pink">📱</div>
+            <div class="skill-card-title">Social & Publishing</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Sprout Social</span>
+              <span class="skill-tag">Hootsuite</span>
+              <span class="skill-tag">HubSpot Social</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-icon icon-navy">🎨</div>
+            <div class="skill-card-title">Design & PM</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Canva</span>
+              <span class="skill-tag">Figma</span>
+              <span class="skill-tag">Asana</span>
+              <span class="skill-tag">Confluence</span>
+              <span class="skill-tag">Google Workspace</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VOLUNTEER -->
+    <div id="volunteer">
+      <div class="section-wrap">
+        <div class="section-eyebrow"><span class="section-pill">Community</span></div>
+        <h2>Giving <em>Back</em></h2>
+        <p class="section-sub">Leadership and volunteer work beyond the office.</p>
+        <div class="vol-grid">
+          <div class="vol-card">
+            <div class="vol-icon">🌍</div>
+            <div class="vol-role">Director, Marketing & Technology Operations</div>
+            <div class="vol-org">Ottawa-Kabul Global Education Centre</div>
+            <div class="vol-date">January 2025 – Present · Volunteer</div>
+            <div class="vol-desc">Leading digital strategy and marketing operations for a nonprofit delivering virtual education to girls in conflict zones. Managing website, Google Workspace, social strategy, and operational tools while navigating infrastructure challenges including internet blackouts and secure communications.</div>
+          </div>
+          <div class="vol-card">
+            <div class="vol-icon">🤝</div>
+            <div class="vol-role">Holiday Volunteer</div>
+            <div class="vol-org">Compassion Society of Halton</div>
+            <div class="vol-date">2022 – Present</div>
+            <div class="vol-desc">Organizing donated produce, hygiene, and clothing items for holiday care packages for families in need across the Halton region.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="contact">
+      <div class="section-wrap">
+        <div class="contact-wrap">
+          <div class="section-eyebrow" style="justify-content:center;"><span class="section-pill">Contact</span></div>
+          <h2>Let's <em>Connect</em></h2>
+          <p>Open to new opportunities, collaborations, and conversations about marketing technology, AI strategy, or anything in between.</p>
+          <div class="contact-cards">
+            <a href="/cdn-cgi/l/email-protection#ddaeb4aeb4f3b1a8acbc9dbab0bcb4b1f3beb2b0" class="contact-card">
+              <div class="contact-card-icon">✉️</div>
+              <div class="contact-card-label">Email</div>
+              <div class="contact-card-val"><span class="__cf_email__" data-cfemail="9be8f2e8f2b5f7eeeafadbfcf6faf2f7b5f8f4f6">[email&#160;protected]</span></div>
+            </a>
+            <a href="https://linkedin.com/in/sisiluqa" target="_blank" class="contact-card">
+              <div class="contact-card-icon">💼</div>
+              <div class="contact-card-label">LinkedIn</div>
+              <div class="contact-card-val">linkedin.com/in/sisiluqa</div>
+            </a>
+            <a href="tel:6477459919" class="contact-card">
+              <div class="contact-card-icon">📞</div>
+              <div class="contact-card-label">Phone</div>
+              <div class="contact-card-val">647-745-9919</div>
+            </a>
+          </div>
+          <div class="contact-location">📍 Oakville, ON</div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span>© 2025</span>
+      <span class="footer-name">Sisi Luqa</span>
+      <span>Marketing Technology & AI Strategy</span>
+    </footer>
+
+  </div><!-- end main-content -->
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    function checkPassword() {
+      const input = document.getElementById('pw-input').value;
+      const error = document.getElementById('pw-error');
+      if (input === 'luqa123') {
+        document.getElementById('password-screen').style.display = 'none';
+        document.getElementById('mai
