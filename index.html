@@ -9,28 +9,28 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy: #02127A;
-      --navy-light: #0a1f6e;
-      --blue: #02127A;
-      --pink: #D14D95;
-      --pink-soft: #fce8f4;
+      --navy: #0f1f3d;
+      --navy-light: #1a3260;
+      --emerald: #1a6b4a;
+      --emerald-bright: #22c67a;
+      --emerald-soft: #e8f5ee;
       --burgundy: #7c2d3e;
       --burgundy-soft: #f9eef0;
       --gold: #c9972b;
       --gold-soft: #fdf6e8;
       --white: #ffffff;
-      --off-white: #f5f0fc;
-      --light: #ede8f7;
+      --off-white: #f8f7f4;
+      --light: #f0ede8;
       --text: #1a1a2e;
-      --text-mid: #3a3a6a;
-      --text-light: #7070a8;
-      --border: #dcd5f0;
+      --text-mid: #4a4a6a;
+      --text-light: #8888a8;
+      --border: #e2dfd8;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: linear-gradient(160deg, #f5f0fc 0%, #eef0fb 50%, #fce8f4 100%);
+      background: var(--off-white);
       color: var(--text);
       font-family: 'Outfit', sans-serif;
       font-weight: 400;
@@ -41,7 +41,7 @@
     #password-screen {
       position: fixed;
       inset: 0;
-      background: linear-gradient(135deg, #02127A 0%, #0a1a5e 40%, #1a0a3e 100%);
+      background: var(--navy);
       z-index: 9999;
       display: flex;
       align-items: center;
@@ -59,7 +59,7 @@
     .pw-monogram {
       width: 72px;
       height: 72px;
-      background: linear-gradient(135deg, #02127A, #D14D95);
+      background: linear-gradient(135deg, var(--emerald), var(--emerald-bright));
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -103,12 +103,12 @@
     }
 
     .pw-input::placeholder { color: rgba(255,255,255,0.25); letter-spacing: 0; }
-    .pw-input:focus { border-color: var(--pink); }
+    .pw-input:focus { border-color: var(--emerald-bright); }
 
     .pw-btn {
       width: 100%;
       padding: 1rem;
-      background: linear-gradient(135deg, #02127A, #D14D95);
+      background: linear-gradient(135deg, var(--emerald), var(--emerald-bright));
       border: none;
       border-radius: 8px;
       color: white;
@@ -160,7 +160,7 @@
 
     .nav-logo-badge {
       width: 32px; height: 32px;
-      background: linear-gradient(160deg, #02127A 0%, #0d0a3e 60%, #2a0a2e 100%);
+      background: var(--navy);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -187,7 +187,7 @@
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, #02127A, #D14D95);
+      background: var(--navy);
       display: grid;
       grid-template-columns: 1fr 1fr;
       overflow: hidden;
@@ -200,7 +200,7 @@
       position: absolute;
       width: 600px; height: 600px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(1,18,122,0.3) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(26,107,74,0.25) 0%, transparent 70%);
       top: -100px; right: -100px;
       pointer-events: none;
     }
@@ -210,7 +210,7 @@
       position: absolute;
       width: 400px; height: 400px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(209,77,149,0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(124,45,62,0.2) 0%, transparent 70%);
       bottom: -50px; left: 200px;
       pointer-events: none;
     }
@@ -228,9 +228,9 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(209,77,149,0.12);
-      border: 1px solid rgba(209,77,149,0.25);
-      color: var(--pink);
+      background: rgba(34,198,122,0.12);
+      border: 1px solid rgba(34,198,122,0.25);
+      color: var(--emerald-bright);
       font-size: 0.72rem;
       font-weight: 500;
       padding: 0.4rem 1rem;
@@ -255,7 +255,7 @@
     h1 em {
       font-style: italic;
       font-weight: 400;
-      color: var(--pink);
+      color: var(--emerald-bright);
     }
 
     .hero-desc {
@@ -270,7 +270,7 @@
     .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
     .btn-primary {
-      background: linear-gradient(135deg, #02127A, #D14D95);
+      background: linear-gradient(135deg, var(--emerald), var(--emerald-bright));
       color: white;
       padding: 0.85rem 2rem;
       font-family: 'Outfit', sans-serif;
@@ -279,10 +279,10 @@
       text-decoration: none;
       border-radius: 8px;
       transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(1,18,122,0.3);
+      box-shadow: 0 4px 20px rgba(26,107,74,0.3);
     }
 
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(1,18,122,0.4); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,107,74,0.4); }
 
     .btn-outline {
       background: transparent;
@@ -326,7 +326,7 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--pink);
+      color: var(--emerald-bright);
       margin-bottom: 0.4rem;
     }
 
@@ -355,7 +355,7 @@
     }
 
     .section-pill {
-      background: linear-gradient(135deg, #02127A, #1a0a5e);
+      background: var(--navy);
       color: white;
       font-size: 0.65rem;
       font-weight: 600;
@@ -373,7 +373,7 @@
       margin-bottom: 0.5rem;
     }
 
-    h2 em { font-style: italic; color: var(--blue); }
+    h2 em { font-style: italic; color: var(--emerald); }
 
     .section-sub { font-size: 0.9rem; color: var(--text-light); margin-bottom: 3.5rem; font-weight: 300; }
 
@@ -406,7 +406,7 @@
       flex-shrink: 0;
     }
 
-    .dot-blue { background: var(--blue); }
+    .dot-emerald { background: var(--emerald); }
     .dot-burgundy { background: var(--burgundy); }
     .dot-gold { background: var(--gold); }
     .dot-navy { background: var(--navy); }
@@ -422,7 +422,7 @@
     }
 
     .edu-card:hover { transform: translateX(4px); }
-    .edu-card.pink { border-left-color: var(--pink); }
+    .edu-card.emerald { border-left-color: var(--emerald); }
 
     .edu-label {
       font-size: 0.62rem;
@@ -443,7 +443,7 @@
     }
 
     .edu-school { font-size: 0.75rem; color: var(--text-light); margin-bottom: 0.25rem; }
-    .edu-year { font-size: 0.72rem; font-weight: 600; color: var(--blue); }
+    .edu-year { font-size: 0.72rem; font-weight: 600; color: var(--emerald); }
 
     /* ── EXPERIENCE ── */
     #experience { background: var(--off-white); }
@@ -483,7 +483,7 @@
     }
 
     .logo-navy { background: var(--navy); }
-    .logo-pink { background: linear-gradient(135deg, #02127A, #D14D95); }
+    .logo-emerald { background: linear-gradient(135deg, var(--emerald), var(--emerald-bright)); }
     .logo-burgundy { background: var(--burgundy); }
     .logo-gold { background: linear-gradient(135deg, var(--gold), #e8b84b); }
 
@@ -507,7 +507,7 @@
       white-space: nowrap;
     }
 
-    .badge-current { background: var(--pink-soft); color: var(--blue); }
+    .badge-current { background: var(--emerald-soft); color: var(--emerald); }
     .badge-past { background: var(--light); color: var(--text-light); }
     .badge-freelance { background: var(--gold-soft); color: var(--gold); }
     .badge-volunteer { background: var(--burgundy-soft); color: var(--burgundy); }
@@ -540,7 +540,7 @@
       left: 0; top: 0.55em;
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: var(--pink);
+      background: var(--emerald-bright);
     }
 
     /* ── SKILLS ── */
@@ -573,7 +573,7 @@
     }
 
     .icon-navy { background: var(--navy); }
-    .icon-pink { background: var(--pink-soft); }
+    .icon-emerald { background: var(--emerald-soft); }
     .icon-burgundy { background: var(--burgundy-soft); }
     .icon-gold { background: var(--gold-soft); }
 
@@ -599,13 +599,13 @@
       transition: background 0.15s, color 0.15s;
     }
 
-    .skill-tag:hover { background: linear-gradient(135deg, #02127A, #D14D95); color: white; border-color: transparent; }
-    .skill-tag.featured { background: linear-gradient(135deg, #fce8f4, #ede8f7); color: #02127A; border-color: transparent; font-weight: 600; }
+    .skill-tag:hover { background: var(--navy); color: white; border-color: var(--navy); }
+    .skill-tag.featured { background: var(--emerald-soft); color: var(--emerald); border-color: transparent; font-weight: 500; }
 
     /* ── VOLUNTEER ── */
     #volunteer { background: var(--navy); }
     #volunteer h2 { color: white; }
-    #volunteer h2 em { color: var(--pink); }
+    #volunteer h2 em { color: var(--emerald-bright); }
     #volunteer .section-sub { color: rgba(255,255,255,0.4); }
     #volunteer .section-pill { background: rgba(255,255,255,0.1); }
 
@@ -634,7 +634,7 @@
       margin-bottom: 0.3rem;
     }
 
-    .vol-org { font-size: 0.75rem; color: var(--pink); font-weight: 500; margin-bottom: 0.25rem; }
+    .vol-org { font-size: 0.75rem; color: var(--emerald-bright); font-weight: 500; margin-bottom: 0.25rem; }
     .vol-date { font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-bottom: 1rem; }
     .vol-desc { font-size: 0.8rem; line-height: 1.7; color: rgba(255,255,255,0.55); }
 
@@ -748,7 +748,7 @@
       <div class="pw-monogram">SL</div>
       <div class="pw-title">Sisi Luqa</div>
       <div class="pw-subtitle">This portfolio is password protected</div>
-      <input type="password" class="pw-input" id="pw-input" placeholder="Enter password"/>
+      <input type="password" class="pw-input" id="pw-input" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPassword()"/>
       <button class="pw-btn" onclick="checkPassword()">Enter Portfolio →</button>
       <div class="pw-error" id="pw-error">Incorrect password. Please try again.</div>
     </div>
@@ -818,7 +818,7 @@
             <p>At FCT, I lead everything from <strong>custom GPT agent development</strong> and HubSpot ecosystem architecture to full website rebrands and UTM governance frameworks. I've onboarded and integrated 10+ marketing platforms, and I serve as the team's primary AI strategist — translating emerging technology into real, practical workflows.</p>
             <p>Beyond my day job, I lead digital operations for an international nonprofit educating girls in conflict zones, and consult for small businesses on digital presence and automation.</p>
             <div class="about-highlights">
-              <div class="highlight-item"><div class="highlight-dot dot-blue"></div>AI strategy & custom GPT development</div>
+              <div class="highlight-item"><div class="highlight-dot dot-emerald"></div>AI strategy & custom GPT development</div>
               <div class="highlight-item"><div class="highlight-dot dot-navy"></div>Marketing technology stack architecture</div>
               <div class="highlight-item"><div class="highlight-dot dot-burgundy"></div>SEO, analytics & digital performance</div>
               <div class="highlight-item"><div class="highlight-dot dot-gold"></div>HubSpot CMS, CRM & automation</div>
@@ -831,7 +831,7 @@
               <div class="edu-school">McMaster University, DeGroote School of Business</div>
               <div class="edu-year">2025 → 2027 (Expected)</div>
             </div>
-            <div class="edu-card pink">
+            <div class="edu-card emerald">
               <div class="edu-label">Undergraduate Degree</div>
               <div class="edu-degree">BCom — Law & Business / Marketing Management</div>
               <div class="edu-school">Toronto Metropolitan University</div>
@@ -940,7 +940,7 @@
         <p class="section-sub">Platforms and technologies I work with every day.</p>
         <div class="skills-grid">
           <div class="skill-card">
-            <div class="skill-card-icon icon-pink">🤖</div>
+            <div class="skill-card-icon icon-emerald">🤖</div>
             <div class="skill-card-title">AI & Automation</div>
             <div class="skill-tags">
               <span class="skill-tag featured">Custom GPT Development</span>
@@ -985,7 +985,7 @@
             </div>
           </div>
           <div class="skill-card">
-            <div class="skill-card-icon icon-pink">📱</div>
+            <div class="skill-card-icon icon-emerald">📱</div>
             <div class="skill-card-title">Social & Publishing</div>
             <div class="skill-tags">
               <span class="skill-tag">Sprout Social</span>
@@ -1041,10 +1041,10 @@
           <h2>Let's <em>Connect</em></h2>
           <p>Open to new opportunities, collaborations, and conversations about marketing technology, AI strategy, or anything in between.</p>
           <div class="contact-cards">
-            <a href="/cdn-cgi/l/email-protection#ddaeb4aeb4f3b1a8acbc9dbab0bcb4b1f3beb2b0" class="contact-card">
+            <a href="mailto:sisi.luqa@gmail.com" class="contact-card">
               <div class="contact-card-icon">✉️</div>
               <div class="contact-card-label">Email</div>
-              <div class="contact-card-val"><span class="__cf_email__" data-cfemail="9be8f2e8f2b5f7eeeafadbfcf6faf2f7b5f8f4f6">[email&#160;protected]</span></div>
+              <div class="contact-card-val">sisi.luqa@gmail.com</div>
             </a>
             <a href="https://linkedin.com/in/sisiluqa" target="_blank" class="contact-card">
               <div class="contact-card-icon">💼</div>
@@ -1070,10 +1070,20 @@
 
   </div><!-- end main-content -->
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     function checkPassword() {
       const input = document.getElementById('pw-input').value;
       const error = document.getElementById('pw-error');
       if (input === 'luqa123') {
         document.getElementById('password-screen').style.display = 'none';
-        document.getElementById('mai
+        document.getElementById('main-content').style.display = 'block';
+      } else {
+        error.style.display = 'block';
+        document.getElementById('pw-input').value = '';
+        document.getElementById('pw-input').focus();
+      }
+    }
+  </script>
+
+</body>
+</html>
